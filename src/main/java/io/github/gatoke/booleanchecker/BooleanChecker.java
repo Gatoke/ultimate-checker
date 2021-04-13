@@ -244,6 +244,7 @@ public final class BooleanChecker {
 
     /**
      * Checks if any vararg element (right) is matching compared element (left).
+     * Returns false if varargs are empty or null.
      *
      * @param compared - element to compare
      * @param values   - elements to compare with compared
@@ -251,6 +252,9 @@ public final class BooleanChecker {
      */
     @SafeVarargs
     public static <T> boolean anyEqual(final T compared, final T... values) {
+        if (values == null || values.length < 1) {
+            return false;
+        }
         for (final T value : values) {
             if (compared == null) {
                 if (value == null) {
@@ -267,13 +271,17 @@ public final class BooleanChecker {
 
     /**
      * Checks if any vararg element (right) is NOT matching compared element (left).
+     * Returns false if varargs are empty or null.
      *
      * @param compared - element to compare
      * @param values   - elements to compare with compared
-     * @return true if any element is NOT equal compared
+     * @return true if any element is NOT equal compared.
      */
     @SafeVarargs
     public static <T> boolean anyNotEqual(final T compared, final T... values) {
+        if (values == null || values.length < 1) {
+            return false;
+        }
         for (final T value : values) {
             if (compared == null) {
                 if (value != null) {

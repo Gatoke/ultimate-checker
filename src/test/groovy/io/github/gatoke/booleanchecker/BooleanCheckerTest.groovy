@@ -1,6 +1,5 @@
 package io.github.gatoke.booleanchecker
 
-
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -242,13 +241,17 @@ class BooleanCheckerTest extends Specification {
         actual == expected
 
         where:
-        compared | values                               || expected
-        "car"    | ["home", "home", "home"] as String[] || false
-        "car"    | ["car", "car", "car"] as String[]    || true
-        1L       | [1L, 1L, 1L] as long[]               || true
-        null     | [null, null, null] as String[]       || true
-        "car"    | ["car", "car", "home"] as String[]   || false
-        "car"    | ["car", null, null] as String[]      || false
+        compared | values                                  || expected
+        "true"   | ["true"] as String[]                    || true
+        "true"   | ["false"] as String[]                   || false
+        "true"   | ["true", "true", "true"] as String[]    || true
+        "true"   | ["true", "false", "false"] as String[]  || false
+        "true"   | ["true", "false", "true"] as String[]   || false
+        "true"   | ["false", "true", "false"] as String[]  || false
+        "true"   | ["false", "false", "false"] as String[] || false
+        "true"   | [null] as String[]                      || false
+        "true"   | ["true", null, null] as String[]        || false
+        "true"   | ["false", null, null] as String[]       || false
     }
 
     def "should throw exception on allEqual when no arguments are passed"() {
@@ -270,19 +273,22 @@ class BooleanCheckerTest extends Specification {
         actual == expected
 
         where:
-        compared | values                               || expected
-        "car"    | ["home", "home", "home"] as String[] || true
-        "car"    | ["car", "car", "car"] as String[]    || false
-        1L       | [1L, 1L, 1L] as long[]               || false
-        "car"    | ["car", "car", "home"] as String[]   || false
-        "car"    | ["car", null, null] as String[]      || false
-        null     | [null, null, null] as String[]       || false
-        null     | 6L                                   || true
+        compared | values                                  || expected
+        "true"   | ["true"] as String[]                    || false
+        "true"   | ["false"] as String[]                   || true
+        "true"   | ["true", "true", "true"] as String[]    || false
+        "true"   | ["true", "false", "false"] as String[]  || false
+        "true"   | ["true", "false", "true"] as String[]   || false
+        "true"   | ["false", "true", "false"] as String[]  || false
+        "true"   | ["false", "false", "false"] as String[] || true
+        "true"   | [null] as String[]                      || true
+        "true"   | ["true", null, null] as String[]        || false
+        "true"   | ["false", null, null] as String[]       || true
     }
 
     def "should throw exception on allNotEqual when no arguments are passed"() {
         when:
-        def actual = BooleanChecker.allNotEqual(compared, values)
+        BooleanChecker.allNotEqual(compared, values)
         then:
         thrown(expected)
 
@@ -299,13 +305,19 @@ class BooleanCheckerTest extends Specification {
         actual == expected
 
         where:
-        compared | values                               || expected
-        "car"    | ["car", "car", "car"] as String[]    || true
-        "car"    | ["car", "home", null] as String[]    || true
-        "car"    | ["home", "home", "home"] as String[] || false
-        "car"    | [] as String[]                       || false
-        null     | [null, "home"] as String[]           || true
-        null     | ["car", "home"] as String[]          || false
+        compared | values                                  || expected
+        "true"   | ["true"] as String[]                    || true
+        "true"   | ["false"] as String[]                   || false
+        "true"   | ["true", "true", "true"] as String[]    || true
+        "true"   | ["true", "false", "false"] as String[]  || true
+        "true"   | ["true", "false", "true"] as String[]   || true
+        "true"   | ["false", "true", "false"] as String[]  || true
+        "true"   | ["false", "false", "false"] as String[] || false
+        "true"   | [null] as String[]                      || false
+        "true"   | ["true", null, null] as String[]        || true
+        "true"   | ["false", null, null] as String[]       || false
+        "true"   | [] as List<String>                      || false
+        "true"   | null                                    || false
     }
 
     def "anyNotEqual"() {
@@ -315,12 +327,18 @@ class BooleanCheckerTest extends Specification {
         actual == expected
 
         where:
-        compared | values                               || expected
-        "car"    | ["car", "car", "car"] as String[]    || false
-        "car"    | ["car", "home", null] as String[]    || true
-        "car"    | ["home", "home", "home"] as String[] || true
-        "car"    | [] as String[]                       || false
-        null     | [null, "home"] as String[]           || true
-        null     | ["car", "home"] as String[]          || true
+        compared | values                                  || expected
+        "true"   | ["true"] as String[]                    || false
+        "true"   | ["false"] as String[]                   || true
+        "true"   | ["true", "true", "true"] as String[]    || false
+        "true"   | ["true", "false", "false"] as String[]  || true
+        "true"   | ["true", "false", "true"] as String[]   || true
+        "true"   | ["false", "true", "false"] as String[]  || true
+        "true"   | ["false", "false", "false"] as String[] || true
+        "true"   | [null] as String[]                      || true
+        "true"   | ["true", null, null] as String[]        || true
+        "true"   | ["false", null, null] as String[]       || true
+        "true"   | [] as String[]                          || false
+        "true"   | null                                    || false
     }
 }
