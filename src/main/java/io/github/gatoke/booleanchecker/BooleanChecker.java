@@ -203,7 +203,7 @@ public final class BooleanChecker {
         }
         for (final T value : values) {
             if (compared == null) {
-                if (value != null) {
+                if (value == null) {
                     continue;
                 }
                 return false;

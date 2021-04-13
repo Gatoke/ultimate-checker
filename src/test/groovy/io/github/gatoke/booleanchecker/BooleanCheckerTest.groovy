@@ -21,6 +21,18 @@ class BooleanCheckerTest extends Specification {
         [false, false, false] as boolean[] || false
     }
 
+    def "should throw exception on allTrue when no arguments are passed"() {
+        when:
+        BooleanChecker.allTrue(values)
+        then:
+        thrown(expected)
+
+        where:
+        values            || expected
+        [] as boolean[]   || IllegalArgumentException
+        null as boolean[] || IllegalArgumentException
+    }
+
     def "noneFalse"() {
         when:
         def actual = BooleanChecker.noneFalse(values)
@@ -65,6 +77,18 @@ class BooleanCheckerTest extends Specification {
         [true, true, false] as boolean[]   || false
         [true, false, false] as boolean[]  || false
         [false, false, false] as boolean[] || true
+    }
+
+    def "should throw exception on allFalse when no argument is passed"() {
+        when:
+        BooleanChecker.allFalse(values)
+        then:
+        thrown(expected)
+
+        where:
+        values            || expected
+        [] as boolean[]   || IllegalArgumentException
+        null as boolean[] || IllegalArgumentException
     }
 
     def "noneTrue"() {
@@ -180,8 +204,21 @@ class BooleanCheckerTest extends Specification {
         "car"    | ["home", "home", "home"] as String[] || false
         "car"    | ["car", "car", "car"] as String[]    || true
         1L       | [1L, 1L, 1L] as long[]               || true
+        null     | [null, null, null] as String[]       || true
         "car"    | ["car", "car", "home"] as String[]   || false
         "car"    | ["car", null, null] as String[]      || false
+    }
+
+    def "should throw exception on allEqual when no arguments are passed"() {
+        when:
+        BooleanChecker.allEqual(compared, values)
+        then:
+        thrown(expected)
+
+        where:
+        compared | values           || expected
+        "car"    | null as String[] || IllegalArgumentException
+        "car"    | [] as String[]   || IllegalArgumentException
     }
 
     def "allNotEqual"() {
@@ -197,8 +234,20 @@ class BooleanCheckerTest extends Specification {
         1L       | [1L, 1L, 1L] as long[]               || false
         "car"    | ["car", "car", "home"] as String[]   || false
         "car"    | ["car", null, null] as String[]      || false
-        null     | [null] as String[]                   || false
+        null     | [null, null, null] as String[]       || false
         null     | 6L                                   || true
+    }
+
+    def "should throw exception on allNotEqual when no arguments are passed"() {
+        when:
+        def actual = BooleanChecker.allNotEqual(compared, values)
+        then:
+        thrown(expected)
+
+        where:
+        compared | values           || expected
+        "car"    | [] as String[]   || IllegalArgumentException
+        "car"    | null as String[] || IllegalArgumentException
     }
 
     def "anyEqual"() {
