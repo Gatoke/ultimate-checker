@@ -15,9 +15,12 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                             || expected
+        [true] as boolean[]                || true
+        [false] as boolean[]               || false
         [true, true, true] as boolean[]    || true
-        [true, true, false] as boolean[]   || false
         [true, false, false] as boolean[]  || false
+        [true, false, true] as boolean[]   || false
+        [false, true, false] as boolean[]  || false
         [false, false, false] as boolean[] || false
     }
 
@@ -41,9 +44,12 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                             || expected
+        [true] as boolean[]                || true
+        [false] as boolean[]               || false
         [true, true, true] as boolean[]    || true
-        [true, true, false] as boolean[]   || false
         [true, false, false] as boolean[]  || false
+        [true, false, true] as boolean[]   || false
+        [false, true, false] as boolean[]  || false
         [false, false, false] as boolean[] || false
         [] as boolean[]                    || true
         null                               || true
@@ -57,10 +63,16 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                                 || expected
-        [true, true, null] as List<Boolean>    || true
-        [true, true, false] as List<Boolean>   || false
+        [true] as List<Boolean>                || true
+        [false] as List<Boolean>               || false
+        [true, true, true] as List<Boolean>    || true
         [true, false, false] as List<Boolean>  || false
+        [true, false, true] as List<Boolean>   || false
+        [false, true, false] as List<Boolean>  || false
         [false, false, false] as List<Boolean> || false
+        [null] as List<Boolean>                || true
+        [true, null, null] as List<Boolean>    || true
+        [false, null, null] as List<Boolean>   || false
         [] as List<Boolean>                    || true
         null                                   || true
     }
@@ -73,9 +85,12 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                             || expected
+        [true] as boolean[]                || false
+        [false] as boolean[]               || true
         [true, true, true] as boolean[]    || false
-        [true, true, false] as boolean[]   || false
         [true, false, false] as boolean[]  || false
+        [true, false, true] as boolean[]   || false
+        [false, true, false] as boolean[]  || false
         [false, false, false] as boolean[] || true
     }
 
@@ -99,9 +114,12 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                             || expected
+        [true] as boolean[]                || false
+        [false] as boolean[]               || true
         [true, true, true] as boolean[]    || false
-        [true, true, false] as boolean[]   || false
         [true, false, false] as boolean[]  || false
+        [true, false, true] as boolean[]   || false
+        [false, true, false] as boolean[]  || false
         [false, false, false] as boolean[] || true
         [] as boolean[]                    || true
         null                               || true
@@ -114,13 +132,19 @@ class BooleanCheckerTest extends Specification {
         actual == expected
 
         where:
-        values                                || expected
-        [true, true, true] as List<Boolean>   || false
-        [true, true, false] as List<Boolean>  || false
-        [true, false, false] as List<Boolean> || false
-        [false, false, null] as List<Boolean> || true
-        [] as List<Boolean>                   || true
-        null                                  || true
+        values                                 || expected
+        [true] as List<Boolean>                || false
+        [false] as List<Boolean>               || true
+        [true, true, true] as List<Boolean>    || false
+        [true, false, false] as List<Boolean>  || false
+        [true, false, true] as List<Boolean>   || false
+        [false, true, false] as List<Boolean>  || false
+        [false, false, false] as List<Boolean> || true
+        [null] as List<Boolean>                || true
+        [true, null, null] as List<Boolean>    || false
+        [false, null, null] as List<Boolean>   || true
+        [] as List<Boolean>                    || true
+        null                                   || true
     }
 
     // -------------------------------------------------------
@@ -133,9 +157,12 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                             || expected
+        [true] as boolean[]                || true
+        [false] as boolean[]               || false
         [true, true, true] as boolean[]    || true
-        [true, true, false] as boolean[]   || true
         [true, false, false] as boolean[]  || true
+        [true, false, true] as boolean[]   || true
+        [false, true, false] as boolean[]  || true
         [false, false, false] as boolean[] || false
         [] as boolean[]                    || false
         null                               || false
@@ -149,10 +176,16 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                                 || expected
-        [true, true, null] as List<Boolean>    || true
-        [true, true, false] as List<Boolean>   || true
+        [true] as List<Boolean>                || true
+        [false] as List<Boolean>               || false
+        [true, true, true] as List<Boolean>    || true
         [true, false, false] as List<Boolean>  || true
+        [true, false, true] as List<Boolean>   || true
+        [false, true, false] as List<Boolean>  || true
         [false, false, false] as List<Boolean> || false
+        [null] as List<Boolean>                || false
+        [true, null, null] as List<Boolean>    || true
+        [false, null, null] as List<Boolean>   || false
         [] as List<Boolean>                    || false
         null                                   || false
     }
@@ -167,9 +200,12 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                             || expected
+        [true] as boolean[]                || false
+        [false] as boolean[]               || true
         [true, true, true] as boolean[]    || false
-        [true, true, false] as boolean[]   || true
         [true, false, false] as boolean[]  || true
+        [true, false, true] as boolean[]   || true
+        [false, true, false] as boolean[]  || true
         [false, false, false] as boolean[] || true
         [] as boolean[]                    || false
         null                               || false
@@ -183,10 +219,16 @@ class BooleanCheckerTest extends Specification {
 
         where:
         values                                 || expected
+        [true] as List<Boolean>                || false
+        [false] as List<Boolean>               || true
         [true, true, true] as List<Boolean>    || false
-        [true, true, false] as List<Boolean>   || true
-        [true, false, null] as List<Boolean>   || true
+        [true, false, false] as List<Boolean>  || true
+        [true, false, true] as List<Boolean>   || true
+        [false, true, false] as List<Boolean>  || true
         [false, false, false] as List<Boolean> || true
+        [null] as List<Boolean>                || false
+        [true, null, null] as List<Boolean>    || false
+        [false, null, null] as List<Boolean>   || true
         [] as List<Boolean>                    || false
         null                                   || false
     }
