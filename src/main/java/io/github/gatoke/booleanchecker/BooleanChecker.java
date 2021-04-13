@@ -2,6 +2,11 @@ package io.github.gatoke.booleanchecker;
 
 import java.util.Collection;
 
+/**
+ * @author Karol Dominiak <gatoke2@gmail.com>
+ * <p>
+ * Provides methods for comparing values.
+ */
 public final class BooleanChecker {
 
     private BooleanChecker() {
@@ -189,6 +194,7 @@ public final class BooleanChecker {
      * @param compared - element to compare
      * @param values   - elements to compare with compared
      * @return true if every element is equal compared
+     * @throws IllegalArgumentException - when provided varargs are null or empty.
      */
     @SafeVarargs
     public static <T> boolean allEqual(final T compared, final T... values) {
@@ -215,6 +221,7 @@ public final class BooleanChecker {
      * @param compared - element to compare
      * @param values   - elements to compare with compared
      * @return true if every element is NOT equal compared
+     * @throws IllegalArgumentException - when provided varargs are null or empty.
      */
     @SafeVarargs
     public static <T> boolean allNotEqual(final T compared, final T... values) {
