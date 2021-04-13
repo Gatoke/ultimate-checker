@@ -110,7 +110,7 @@ boolean haveWonSomewhere = BooleanChecker.anyEqual(username,
 );
 ```
 
-### 10. anyNotEqual (null safe!!):
+### 11. anyNotEqual (null safe!!):
 
 ```java
 boolean haveFailedSomewhere = BooleanChecker.anyNotEqual(username,
