@@ -1,3 +1,5 @@
+![Boolean-Checker Build](https://github.com/Gatoke/boolean-checker/actions/workflows/gradle.yml/badge.svg)
+
 Are you tired of == != || && when comparing values?
 - 
 
