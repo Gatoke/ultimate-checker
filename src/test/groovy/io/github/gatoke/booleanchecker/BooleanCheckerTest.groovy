@@ -67,7 +67,13 @@ class BooleanCheckerTest extends Specification {
         [false, true, false] as boolean[]  || false
         [false, false, false] as boolean[] || false
         [] as boolean[]                    || true
-        null                               || true
+    }
+
+    def "noneFalse with null passed"() {
+        when:
+        def result = BooleanChecker.noneFalse(null as boolean[])
+        then:
+        result == true
     }
 
     def "noneFalse_as_collection"() {
@@ -89,7 +95,7 @@ class BooleanCheckerTest extends Specification {
         [true, null, null] as List<Boolean>    || true
         [false, null, null] as List<Boolean>   || false
         [] as List<Boolean>                    || true
-        null                                   || true
+        null as List<Boolean>                  || true
     }
 
     def "allFalse"() {
@@ -137,7 +143,13 @@ class BooleanCheckerTest extends Specification {
         [false, true, false] as boolean[]  || false
         [false, false, false] as boolean[] || true
         [] as boolean[]                    || true
-        null                               || true
+    }
+
+    def "noneTrue with null passed"() {
+        when:
+        def result = BooleanChecker.noneTrue(null as boolean[])
+        then:
+        result == true
     }
 
     def "noneTrue_as_collection"() {
@@ -180,7 +192,14 @@ class BooleanCheckerTest extends Specification {
         [false, true, false] as boolean[]  || true
         [false, false, false] as boolean[] || false
         [] as boolean[]                    || false
-        null                               || false
+    }
+
+    def "anyTrue with null passed"() {
+        when:
+        def result = BooleanChecker.anyTrue(null as boolean[])
+
+        then:
+        result == false
     }
 
     def "anyTrue_as_collection"() {
@@ -202,7 +221,7 @@ class BooleanCheckerTest extends Specification {
         [true, null, null] as List<Boolean>    || true
         [false, null, null] as List<Boolean>   || false
         [] as List<Boolean>                    || false
-        null                                   || false
+        null as List<Boolean>                  || false
     }
 
     // ------------------------------------------------------
@@ -223,7 +242,14 @@ class BooleanCheckerTest extends Specification {
         [false, true, false] as boolean[]  || true
         [false, false, false] as boolean[] || true
         [] as boolean[]                    || false
-        null                               || false
+    }
+
+    def "anyFalse with null passed"() {
+        when:
+        def result = BooleanChecker.anyFalse(null as boolean[])
+
+        then:
+        result == false
     }
 
     def "anyFalse_as_collection"() {
@@ -245,7 +271,7 @@ class BooleanCheckerTest extends Specification {
         [true, null, null] as List<Boolean>    || false
         [false, null, null] as List<Boolean>   || true
         [] as List<Boolean>                    || false
-        null                                   || false
+        null as List<Boolean>                  || false
     }
 
     // -------------------------------------------------------
@@ -268,6 +294,9 @@ class BooleanCheckerTest extends Specification {
         "true"   | [null] as String[]                      || false
         "true"   | ["true", null, null] as String[]        || false
         "true"   | ["false", null, null] as String[]       || false
+        null     | [null, null] as String[]                || true
+        null     | [null, "true"] as String[]              || false
+        null     | ["false", "false"] as String[]          || false
     }
 
     def "should throw exception on allEqual when no arguments are passed"() {
@@ -300,6 +329,9 @@ class BooleanCheckerTest extends Specification {
         "true"   | [null] as String[]                      || true
         "true"   | ["true", null, null] as String[]        || false
         "true"   | ["false", null, null] as String[]       || true
+        null     | [null, null] as String[]                || false
+        null     | [null, "true"] as String[]              || false
+        null     | ["false", "false"] as String[]          || true
     }
 
     def "should throw exception on allNotEqual when no arguments are passed"() {
@@ -332,8 +364,12 @@ class BooleanCheckerTest extends Specification {
         "true"   | [null] as String[]                      || false
         "true"   | ["true", null, null] as String[]        || true
         "true"   | ["false", null, null] as String[]       || false
-        "true"   | [] as List<String>                      || false
+        "true"   | [] as String[]                          || false
         "true"   | null                                    || false
+        null     | [null, null] as String[]                || true
+        null     | [null, "true"] as String[]              || true
+        null     | ["false", "false"] as String[]          || false
+        null     | null as String[]                        || false
     }
 
     def "anyNotEqual"() {
@@ -356,5 +392,9 @@ class BooleanCheckerTest extends Specification {
         "true"   | ["false", null, null] as String[]       || true
         "true"   | [] as String[]                          || false
         "true"   | null                                    || false
+        null     | [null, null] as String[]                || false
+        null     | [null, "true"] as String[]              || true
+        null     | ["false", "false"] as String[]          || true
+        null     | null as String[]                        || false
     }
 }
