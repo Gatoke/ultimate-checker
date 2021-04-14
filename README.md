@@ -2,11 +2,11 @@
 [![codecov](https://codecov.io/gh/Gatoke/boolean-checker/branch/main/graph/badge.svg?token=GBGOX3RZJA)](https://codecov.io/gh/Gatoke/boolean-checker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Are you tired of == != || && when comparing values?
+### Are you tired of == != || && when comparing values?
 
 ![tired cat](docs/tired_cat.jpg)
 
-## Do you feel professionally burned out after a long day of writing code like this?
+### Do you feel professionally burned out after a long day of writing code like this?
 
 ```java
 boolean shouldHaveSomeRest = 
@@ -19,7 +19,7 @@ boolean shouldHaveSomeRest =
 
 #### It's time for change...
 
-# REPRESENTING BOOLEAN-CHECKER:
+# REPRESENTING BOOLEAN CHECKER:
 
 ```java
 boolean shouldCodeMore = BooleanChecker.anyEqual(selectedOption,
@@ -33,7 +33,7 @@ boolean shouldCodeMore = BooleanChecker.anyEqual(selectedOption,
 
 ---
 
-## Interested? Here's more:
+### Interested? Here's more:
 
 ![interested cats](docs/interested_cats.jpg)
 
@@ -129,3 +129,8 @@ boolean haveFailedSomewhere = BooleanChecker.anyNotEqual(username,
         electionsService.getWinnerFrom("Żoliborz")
 );
 ```
+
+---
+
+### Compatibility:
+The project is tested with Java 8 but there's no usage of Java 8's specific API, so it should be compatible with Java 7 also.
