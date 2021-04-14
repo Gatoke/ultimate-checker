@@ -1,4 +1,6 @@
 ![Boolean-Checker Build](https://github.com/Gatoke/boolean-checker/actions/workflows/gradle.yml/badge.svg)
+[![codecov](https://codecov.io/gh/Gatoke/boolean-checker/branch/main/graph/badge.svg?token=GBGOX3RZJA)](https://codecov.io/gh/Gatoke/boolean-checker)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Are you tired of == != || && when comparing values?
 - 

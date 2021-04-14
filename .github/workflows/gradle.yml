@@ -25,11 +25,13 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build with Gradle
-        run: ./gradlew clean build
+      - name: Build
+        run: ./gradlew clean build -x check
 
-      - name: Upload coverage report
+      - name: Unit Tests
+        run: ./gradlew check
+
+      - name: Generate and upload coverage report
         run: |
-          ./gradlew check
           ./gradlew codeCoverageReport || echo "Code coverage failed"
           bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
