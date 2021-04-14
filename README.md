@@ -2,8 +2,9 @@
 [![codecov](https://codecov.io/gh/Gatoke/boolean-checker/branch/main/graph/badge.svg?token=GBGOX3RZJA)](https://codecov.io/gh/Gatoke/boolean-checker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Are you tired of == != || && when comparing values?
-- 
+## Are you tired of == != || && when comparing values?
+
+![tired cat](docs/tired_cat.jpg)
 
 ## Do you feel professionally burned out after a long day of writing code like this?
 
@@ -13,6 +14,8 @@ boolean shouldHaveSomeRest =
         || selectedOption == FeelingEnum.SLEEPY
         || selectedOption == FeelingEnum.RESIGNED;
 ```
+
+![angry cat](docs/angry_cat.jpg)
 
 #### It's time for change...
 
@@ -26,11 +29,15 @@ boolean shouldCodeMore = BooleanChecker.anyEqual(selectedOption,
 );
 ```
 
+![relaxed cat](docs/relaxed_cat.jpg)
+
 ---
 
 ## Interested? Here's more:
 
-### 1. allTrue:
+![interested cats](docs/interested_cats.jpg)
+
+- #### 1. allTrue:
 
 ```java
 boolean canPerformOperation = BooleanChecker.allTrue(
@@ -40,7 +47,7 @@ boolean canPerformOperation = BooleanChecker.allTrue(
 );
 ```
 
-### 2. noneFalse (safe for null values!!):
+- #### 2. noneFalse (safe for null values!!):
 
 ```java
 boolean canPerformOperation = BooleanChecker.noneFalse(
@@ -50,7 +57,7 @@ boolean canPerformOperation = BooleanChecker.noneFalse(
 );
 ```
 
-### 4. allFalse:
+- #### 4. allFalse:
 
 ```java
 boolean hasPermission = BooleanChecker.allFalse(
@@ -59,7 +66,7 @@ boolean hasPermission = BooleanChecker.allFalse(
 );
 ```
 
-### 5. noneTrue (also null safe):
+- #### 5. noneTrue (also null safe):
 
 ```java
 boolean hasPermission = BooleanChecker.noneTrue(
@@ -69,7 +76,7 @@ boolean hasPermission = BooleanChecker.noneTrue(
 );
 ```
 
-### 6. anyTrue (null safe):
+- #### 6. anyTrue (null safe):
 
 ```java
 boolean hasAccess = BooleanChecker.anyTrue(
@@ -78,7 +85,7 @@ boolean hasAccess = BooleanChecker.anyTrue(
 );
 ```
 
-### 7. anyFalse (null safe):
+- #### 7. anyFalse (null safe):
 
 ```java
 boolean shouldBlockAccess = BooleanChecker.anyFalse(
@@ -87,7 +94,7 @@ boolean shouldBlockAccess = BooleanChecker.anyFalse(
 );
 ```
 
-### 8. allEqual:
+- #### 8. allEqual:
 
 ```java
 boolean haveWonEverywhere = BooleanChecker.allEqual(username,
@@ -96,7 +103,7 @@ boolean haveWonEverywhere = BooleanChecker.allEqual(username,
 );
 ```
 
-### 9. allNotEqual:
+- #### 9. allNotEqual:
 
 ```java
 boolean didNotWinAnywhere = BooleanChecker.allNotEqual(username,
@@ -105,7 +112,7 @@ boolean didNotWinAnywhere = BooleanChecker.allNotEqual(username,
 );
 ```
 
-### 10. anyEqual (null safe!!):
+- #### 10. anyEqual (null safe!!):
 
 ```java
 boolean haveWonSomewhere = BooleanChecker.anyEqual(username,
@@ -114,7 +121,7 @@ boolean haveWonSomewhere = BooleanChecker.anyEqual(username,
 );
 ```
 
-### 11. anyNotEqual (null safe!!):
+- #### 11. anyNotEqual (null safe!!):
 
 ```java
 boolean haveFailedSomewhere = BooleanChecker.anyNotEqual(username,
