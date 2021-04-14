@@ -29,7 +29,7 @@ jobs:
         run: ./gradlew clean build
 
       - name: Upload coverage report
-        run:
+        run: |
           ./gradlew check
           ./gradlew codeCoverageReport || echo "Code coverage failed"
-          bash <(curl -s https://codecov.io/bash)
+          bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
