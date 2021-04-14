@@ -78,8 +78,8 @@ boolean hasAccess = BooleanChecker.anyTrue(
 
 ```java
 boolean shouldBlockAccess = BooleanChecker.anyFalse(
-        authorizationService.isAdministrator(userId),
-        authorizationService.isTester(userId)
+        authorizationService.isTester(userId),
+        authorizationService.hasPrivileges(userId)
 );
 ```
 
