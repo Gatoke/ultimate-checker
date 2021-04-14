@@ -10,7 +10,7 @@ import java.util.Collection;
 public final class BooleanChecker {
 
     private BooleanChecker() {
-        throw new IllegalStateException("Creating instance is not allowed!");
+        throw new UnsupportedOperationException("Creating instance is not allowed!");
     }
 
     /**

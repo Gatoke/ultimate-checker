@@ -3,8 +3,24 @@ package io.github.gatoke.booleanchecker
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import java.lang.reflect.InvocationTargetException
+
 @Unroll
 class BooleanCheckerTest extends Specification {
+
+    def "should throw exception when try to create instance of BooleanChecker"() {
+        given:
+        def constructor = BooleanChecker.class.getDeclaredConstructor()
+        constructor.setAccessible(true)
+
+        when:
+        constructor.newInstance()
+
+        then:
+        InvocationTargetException result = thrown()
+        and:
+        result.targetException instanceof UnsupportedOperationException
+    }
 
     def "allTrue"() {
         when:
