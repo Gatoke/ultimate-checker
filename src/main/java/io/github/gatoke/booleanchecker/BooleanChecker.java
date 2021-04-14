@@ -14,8 +14,9 @@ public final class BooleanChecker {
     }
 
     /**
-     * Checks if every element is TRUE. Intended to be used as:
-     *
+     * Checks if every element is TRUE.
+     * <p>
+     * Intended to be used as:
      * <pre>
      * var validationResult = BooleanChecker.allTrue(
      *     userRepository.doesExist(userId),
@@ -28,7 +29,7 @@ public final class BooleanChecker {
      * @return true if every argument is true
      * @throws IllegalArgumentException - when provided varargs are null or empty.
      */
-    public static boolean allTrue(final boolean... booleans) throws IllegalArgumentException {
+    public static boolean allTrue(final boolean... booleans) {
         if (booleans == null || booleans.length < 1) {
             throw new IllegalArgumentException("At least one argument is required.");
         }
@@ -41,7 +42,15 @@ public final class BooleanChecker {
     }
 
     /**
-     * Safe alternative to {@link #allTrue(boolean...)}. Checks if varargs do not contain FALSE.
+     * Null-Safe alternative to {@link #allTrue(boolean...)}. Checks if varargs do not contain FALSE.
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean canPerformOperation = BooleanChecker.noneFalse(
+     *         userRepository.doesExist(userId),
+     *         authorizationService.hasPrivileges(userId),
+     * );
+     * </pre>
      *
      * @param booleans - varargs of booleans
      * @return TRUE if varargs do not contain FALSE.
@@ -59,7 +68,7 @@ public final class BooleanChecker {
     }
 
     /**
-     * Safe alternative to {@link #allTrue(boolean...)}. Checks if collection does not contain FALSE.
+     * Null-Safe alternative to {@link #allTrue(boolean...)}. Checks if collection does not contain FALSE.
      *
      * @param booleans - collection of booleans
      * @return TRUE if collection do not contain FALSE.
@@ -72,8 +81,9 @@ public final class BooleanChecker {
     }
 
     /**
-     * Checks if every element is FALSE. Intended to be used as:
-     *
+     * Checks if every element is FALSE.
+     * <p>
+     * Intended to be used as:
      * <pre>
      * var validationResult = BooleanChecker.allFalse(
      *     authorizationService.isBanned(userId),
@@ -85,7 +95,7 @@ public final class BooleanChecker {
      * @return true if every argument is false
      * @throws IllegalArgumentException - when provided varargs are null or empty.
      */
-    public static boolean allFalse(final boolean... booleans) throws IllegalArgumentException {
+    public static boolean allFalse(final boolean... booleans) {
         if (booleans == null || booleans.length < 1) {
             throw new IllegalArgumentException("At least one argument is required.");
         }
@@ -98,7 +108,15 @@ public final class BooleanChecker {
     }
 
     /**
-     * Safe alternative to {@link #allFalse(boolean...)}. Checks if varargs do not contain TRUE.
+     * Null-Safe alternative to {@link #allFalse(boolean...)}. Checks if varargs do not contain TRUE.
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean hasPermission = BooleanChecker.noneTrue(
+     *         authorizationService.isBanned(userId),
+     *         paymentService.didExceedMonthlyLimit(userId),
+     * );
+     * </pre>
      *
      * @param booleans - varargs of booleans
      * @return TRUE if varargs do not contain TRUE.
@@ -116,7 +134,7 @@ public final class BooleanChecker {
     }
 
     /**
-     * Safe alternative to {@link #allFalse(boolean...)}. Checks if collection does not contain TRUE.
+     * Null-Safe alternative to {@link #allFalse(boolean...)}. Checks if collection does not contain TRUE.
      *
      * @param booleans - collection of booleans
      * @return TRUE if collection do not contain TRUE.
@@ -130,6 +148,14 @@ public final class BooleanChecker {
 
     /**
      * Checks if varargs contain true.
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean hasAccess = BooleanChecker.anyTrue(
+     *         authorizationService.isAdministrator(userId),
+     *         authorizationService.isTester(userId)
+     * );
+     * </pre>
      *
      * @param booleans varargs of booleans
      * @return true if any element is true
@@ -159,6 +185,14 @@ public final class BooleanChecker {
 
     /**
      * Checks if varargs contain false.
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean shouldBlockAccess = BooleanChecker.anyFalse(
+     *         authorizationService.isTester(userId),
+     *         authorizationService.hasPrivileges(userId)
+     * );
+     * </pre>
      *
      * @param booleans varargs of booleans
      * @return true if any element is false
@@ -176,7 +210,7 @@ public final class BooleanChecker {
     }
 
     /**
-     * Checks if collection contain false.
+     * Checks if collection contains false.
      *
      * @param booleans varargs of booleans
      * @return true if any element is false
@@ -190,6 +224,14 @@ public final class BooleanChecker {
 
     /**
      * Checks if every vararg element (right) is equal compared element (left).
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean haveWonEverywhere = BooleanChecker.allEqual(username,
+     *         electionsService.getWinnerFrom("Śródmieście"),
+     *         electionsService.getWinnerFrom("Żoliborz")
+     * );
+     * </pre>
      *
      * @param compared - element to compare
      * @param values   - elements to compare with compared
@@ -217,6 +259,14 @@ public final class BooleanChecker {
 
     /**
      * Checks if all of vararg elements (right) is are different from compared element (left).
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean didNotWinAnywhere = BooleanChecker.allNotEqual(username,
+     *         electionsService.getWinnerFrom("Śródmieście"),
+     *         electionsService.getWinnerFrom("Żoliborz")
+     * );
+     * </pre>
      *
      * @param compared - element to compare
      * @param values   - elements to compare with compared
@@ -245,6 +295,14 @@ public final class BooleanChecker {
     /**
      * Checks if any vararg element (right) is matching compared element (left).
      * Returns false if varargs are empty or null.
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean haveWonSomewhere = BooleanChecker.anyEqual(username,
+     *         electionsService.getWinnerFrom("Śródmieście"),
+     *         electionsService.getWinnerFrom("Żoliborz")
+     * );
+     * </pre>
      *
      * @param compared - element to compare
      * @param values   - elements to compare with compared
@@ -272,6 +330,14 @@ public final class BooleanChecker {
     /**
      * Checks if any vararg element (right) is NOT matching compared element (left).
      * Returns false if varargs are empty or null.
+     * <p>
+     * Intended to be used as:
+     * <pre>
+     * boolean haveFailedSomewhere = BooleanChecker.anyNotEqual(username,
+     *         electionsService.getWinnerFrom("Śródmieście"),
+     *         electionsService.getWinnerFrom("Żoliborz")
+     * );
+     * </pre>
      *
      * @param compared - element to compare
      * @param values   - elements to compare with compared
