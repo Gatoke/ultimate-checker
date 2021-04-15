@@ -1,4 +1,4 @@
-package io.github.gatoke.booleanchecker;
+package io.github.gatoke.ultimatechecker;
 
 import java.util.Collection;
 
@@ -7,9 +7,9 @@ import java.util.Collection;
  * <p>
  * Provides methods for comparing values.
  */
-public final class BooleanChecker {
+public final class Check {
 
-    private BooleanChecker() {
+    private Check() {
         throw new UnsupportedOperationException("Creating instance is not allowed!");
     }
 
@@ -18,7 +18,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * var validationResult = BooleanChecker.allTrue(
+     * var validationResult = Check.allTrue(
      *     userRepository.doesExist(userId),
      *     authorizationService.hasPrivileges(userId),
      *     operationType == SomeEnum.DEPOSIT
@@ -46,7 +46,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean canPerformOperation = BooleanChecker.noneFalse(
+     * boolean canPerformOperation = Check.noneFalse(
      *         userRepository.doesExist(userId),
      *         authorizationService.hasPrivileges(userId),
      * );
@@ -85,7 +85,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * var validationResult = BooleanChecker.allFalse(
+     * var validationResult = Check.allFalse(
      *     authorizationService.isBanned(userId),
      *     paymentService.didExceedMonthlyLimit(userId)
      * );
@@ -112,7 +112,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean hasPermission = BooleanChecker.noneTrue(
+     * boolean hasPermission = Check.noneTrue(
      *         authorizationService.isBanned(userId),
      *         paymentService.didExceedMonthlyLimit(userId),
      * );
@@ -151,7 +151,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean hasAccess = BooleanChecker.anyTrue(
+     * boolean hasAccess = Check.anyTrue(
      *         authorizationService.isAdministrator(userId),
      *         authorizationService.isTester(userId)
      * );
@@ -188,7 +188,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean shouldBlockAccess = BooleanChecker.anyFalse(
+     * boolean shouldBlockAccess = Check.anyFalse(
      *         authorizationService.isTester(userId),
      *         authorizationService.hasPrivileges(userId)
      * );
@@ -227,7 +227,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean haveWonEverywhere = BooleanChecker.allEqual(username,
+     * boolean haveWonEverywhere = Check.allEqual(username,
      *         electionsService.getWinnerFrom("Śródmieście"),
      *         electionsService.getWinnerFrom("Żoliborz")
      * );
@@ -262,7 +262,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean didNotWinAnywhere = BooleanChecker.allNotEqual(username,
+     * boolean didNotWinAnywhere = Check.allNotEqual(username,
      *         electionsService.getWinnerFrom("Śródmieście"),
      *         electionsService.getWinnerFrom("Żoliborz")
      * );
@@ -298,7 +298,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean haveWonSomewhere = BooleanChecker.anyEqual(username,
+     * boolean haveWonSomewhere = Check.anyEqual(username,
      *         electionsService.getWinnerFrom("Śródmieście"),
      *         electionsService.getWinnerFrom("Żoliborz")
      * );
@@ -333,7 +333,7 @@ public final class BooleanChecker {
      * <p>
      * Intended to be used as:
      * <pre>
-     * boolean haveFailedSomewhere = BooleanChecker.anyNotEqual(username,
+     * boolean haveFailedSomewhere = Check.anyNotEqual(username,
      *         electionsService.getWinnerFrom("Śródmieście"),
      *         electionsService.getWinnerFrom("Żoliborz")
      * );

@@ -1,4 +1,4 @@
-package io.github.gatoke.booleanchecker
+package io.github.gatoke.ultimatechecker
 
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -6,11 +6,11 @@ import spock.lang.Unroll
 import java.lang.reflect.InvocationTargetException
 
 @Unroll
-class BooleanCheckerTest extends Specification {
+class CheckTest extends Specification {
 
-    def "should throw exception when try to create instance of BooleanChecker"() {
+    def "should throw exception when try to create instance of Check"() {
         given:
-        def constructor = BooleanChecker.class.getDeclaredConstructor()
+        def constructor = Check.class.getDeclaredConstructor()
         constructor.setAccessible(true)
 
         when:
@@ -24,7 +24,7 @@ class BooleanCheckerTest extends Specification {
 
     def "allTrue"() {
         when:
-        def actual = BooleanChecker.allTrue(values)
+        def actual = Check.allTrue(values)
         then:
         actual == expected
 
@@ -41,7 +41,7 @@ class BooleanCheckerTest extends Specification {
 
     def "should throw exception on allTrue when no arguments are passed"() {
         when:
-        BooleanChecker.allTrue(values)
+        Check.allTrue(values)
         then:
         thrown(expected)
 
@@ -53,7 +53,7 @@ class BooleanCheckerTest extends Specification {
 
     def "noneFalse"() {
         when:
-        def actual = BooleanChecker.noneFalse(values)
+        def actual = Check.noneFalse(values)
         then:
         actual == expected
 
@@ -71,14 +71,14 @@ class BooleanCheckerTest extends Specification {
 
     def "noneFalse with null passed"() {
         when:
-        def result = BooleanChecker.noneFalse(null as boolean[])
+        def result = Check.noneFalse(null as boolean[])
         then:
         result == true
     }
 
     def "noneFalse_as_collection"() {
         when:
-        def actual = BooleanChecker.noneFalse(values)
+        def actual = Check.noneFalse(values)
         then:
         actual == expected
 
@@ -100,7 +100,7 @@ class BooleanCheckerTest extends Specification {
 
     def "allFalse"() {
         when:
-        def actual = BooleanChecker.allFalse(values)
+        def actual = Check.allFalse(values)
         then:
         actual == expected
 
@@ -117,7 +117,7 @@ class BooleanCheckerTest extends Specification {
 
     def "should throw exception on allFalse when no argument is passed"() {
         when:
-        BooleanChecker.allFalse(values)
+        Check.allFalse(values)
         then:
         thrown(expected)
 
@@ -129,7 +129,7 @@ class BooleanCheckerTest extends Specification {
 
     def "noneTrue"() {
         when:
-        def actual = BooleanChecker.noneTrue(values)
+        def actual = Check.noneTrue(values)
         then:
         actual == expected
 
@@ -147,14 +147,14 @@ class BooleanCheckerTest extends Specification {
 
     def "noneTrue with null passed"() {
         when:
-        def result = BooleanChecker.noneTrue(null as boolean[])
+        def result = Check.noneTrue(null as boolean[])
         then:
         result == true
     }
 
     def "noneTrue_as_collection"() {
         when:
-        def actual = BooleanChecker.noneTrue(values)
+        def actual = Check.noneTrue(values)
         then:
         actual == expected
 
@@ -178,7 +178,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyTrue"() {
         when:
-        def actual = BooleanChecker.anyTrue(values)
+        def actual = Check.anyTrue(values)
         then:
         actual == expected
 
@@ -196,7 +196,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyTrue with null passed"() {
         when:
-        def result = BooleanChecker.anyTrue(null as boolean[])
+        def result = Check.anyTrue(null as boolean[])
 
         then:
         result == false
@@ -204,7 +204,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyTrue_as_collection"() {
         when:
-        def actual = BooleanChecker.anyTrue(values)
+        def actual = Check.anyTrue(values)
         then:
         actual == expected
 
@@ -228,7 +228,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyFalse"() {
         when:
-        def actual = BooleanChecker.anyFalse(values)
+        def actual = Check.anyFalse(values)
         then:
         actual == expected
 
@@ -246,7 +246,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyFalse with null passed"() {
         when:
-        def result = BooleanChecker.anyFalse(null as boolean[])
+        def result = Check.anyFalse(null as boolean[])
 
         then:
         result == false
@@ -254,7 +254,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyFalse_as_collection"() {
         when:
-        def actual = BooleanChecker.anyFalse(values)
+        def actual = Check.anyFalse(values)
         then:
         actual == expected
 
@@ -278,7 +278,7 @@ class BooleanCheckerTest extends Specification {
 
     def "allEqual"() {
         when:
-        def actual = BooleanChecker.allEqual(compared, values)
+        def actual = Check.allEqual(compared, values)
         then:
         actual == expected
 
@@ -301,7 +301,7 @@ class BooleanCheckerTest extends Specification {
 
     def "should throw exception on allEqual when no arguments are passed"() {
         when:
-        BooleanChecker.allEqual(compared, values)
+        Check.allEqual(compared, values)
         then:
         thrown(expected)
 
@@ -313,7 +313,7 @@ class BooleanCheckerTest extends Specification {
 
     def "allNotEqual"() {
         when:
-        def actual = BooleanChecker.allNotEqual(compared, values)
+        def actual = Check.allNotEqual(compared, values)
         then:
         actual == expected
 
@@ -336,7 +336,7 @@ class BooleanCheckerTest extends Specification {
 
     def "should throw exception on allNotEqual when no arguments are passed"() {
         when:
-        BooleanChecker.allNotEqual(compared, values)
+        Check.allNotEqual(compared, values)
         then:
         thrown(expected)
 
@@ -348,7 +348,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyEqual"() {
         when:
-        def actual = BooleanChecker.anyEqual(compared, values)
+        def actual = Check.anyEqual(compared, values)
         then:
         actual == expected
 
@@ -374,7 +374,7 @@ class BooleanCheckerTest extends Specification {
 
     def "anyNotEqual"() {
         when:
-        def actual = BooleanChecker.anyNotEqual(compared, values)
+        def actual = Check.anyNotEqual(compared, values)
         then:
         actual == expected
 
