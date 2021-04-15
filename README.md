@@ -1,3 +1,5 @@
+![logo](docs/ultimate-checker-logo.png)
+
 ![Ultimate-Checker Build](https://github.com/Gatoke/ultimate-checker/actions/workflows/gradle.yml/badge.svg)
 [![codecov](https://codecov.io/gh/Gatoke/ultimate-checker/branch/main/graph/badge.svg?token=GBGOX3RZJA)](https://codecov.io/gh/Gatoke/ultimate-checker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
