@@ -361,4 +361,73 @@ public final class Check {
         }
         return false;
     }
+
+    /**
+     * Checks if given varargs contain null. Returns false if empty.
+     *
+     * @param elements - elements to check
+     * @return true if any element is null
+     */
+    @SafeVarargs
+    public static <T> boolean anyNull(final T... elements) {
+        if (elements == null || elements.length < 1) {
+            return false;
+        }
+        for (T value : elements) {
+            if (value == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if given collection contains null. Returns false if the collection is null or empty.
+     *
+     * @param elements - elements to check
+     * @return true if any element is null
+     */
+    public static <T> boolean anyNull(final Collection<T> elements) {
+        if (elements == null) {
+            return false;
+        }
+        return elements.contains(null);
+    }
+
+    /**
+     * Checks if given varargs contain any initialized element. Returns false if empty.
+     *
+     * @param elements - elements to check
+     * @return true if any element is null
+     */
+    @SafeVarargs
+    public static <T> boolean anyNotNull(final T... elements) {
+        if (elements == null || elements.length < 1) {
+            return false;
+        }
+        for (T value : elements) {
+            if (value != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if given collection contains any initialized element. Returns false if collection is null or empty.
+     *
+     * @param elements - elements to check
+     * @return true if any element is null
+     */
+    public static <T> boolean anyNotNull(final Collection<T> elements) {
+        if (elements == null || elements.isEmpty()) {
+            return false;
+        }
+        for (T value : elements) {
+            if (value != null) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

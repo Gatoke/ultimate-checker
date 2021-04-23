@@ -1,3 +1,4 @@
+//file:noinspection GroovyPointlessBoolean
 package io.github.gatoke.ultimatechecker
 
 import spock.lang.Specification
@@ -396,5 +397,113 @@ class CheckTest extends Specification {
         null     | [null, "true"] as String[]              || true
         null     | ["false", "false"] as String[]          || true
         null     | null as String[]                        || false
+    }
+
+    def "anyNull"() {
+        when:
+        def actual = Check.anyNull(values)
+        then:
+        actual == expected
+
+        where:
+        values                                  || expected
+        ["true"] as String[]                    || false
+        ["false"] as String[]                   || false
+        ["true", "true", "true"] as String[]    || false
+        ["true", "false", "false"] as String[]  || false
+        ["true", "false", "true"] as String[]   || false
+        ["false", "true", "false"] as String[]  || false
+        ["false", "false", "false"] as String[] || false
+        [null] as String[]                      || true
+        ["true", null, null] as String[]        || true
+        ["false", null, null] as String[]       || true
+        [] as String[]                          || false
+        [null, null] as String[]                || true
+        [null, "true"] as String[]              || true
+    }
+
+    def "anyNull with null passed"() {
+        when:
+        def actual = Check.anyNull(null as String[])
+        then:
+        actual == false
+    }
+
+    def "anyNull as collection"() {
+        when:
+        def actual = Check.anyNull(values)
+        then:
+        actual == expected
+
+        where:
+        values                                      || expected
+        ["true"] as List<String>                    || false
+        ["false"] as List<String>                   || false
+        ["true", "true", "true"] as List<String>    || false
+        ["true", "false", "false"] as List<String>  || false
+        ["true", "false", "true"] as List<String>   || false
+        ["false", "true", "false"] as List<String>  || false
+        ["false", "false", "false"] as List<String> || false
+        [null] as List<String>                      || true
+        ["true", null, null] as List<String>        || true
+        ["false", null, null] as List<String>       || true
+        [] as List<String>                          || false
+        [null, null] as List<String>                || true
+        [null, "true"] as List<String>              || true
+        null as List<String>                        || false
+    }
+
+    def "anyNotNull"() {
+        when:
+        def actual = Check.anyNotNull(values)
+        then:
+        actual == expected
+
+        where:
+        values                                  || expected
+        ["true"] as String[]                    || true
+        ["false"] as String[]                   || true
+        ["true", "true", "true"] as String[]    || true
+        ["true", "false", "false"] as String[]  || true
+        ["true", "false", "true"] as String[]   || true
+        ["false", "true", "false"] as String[]  || true
+        ["false", "false", "false"] as String[] || true
+        [null] as String[]                      || false
+        ["true", null, null] as String[]        || true
+        ["false", null, null] as String[]       || true
+        [] as String[]                          || false
+        [null, null] as String[]                || false
+        [null, "true"] as String[]              || true
+    }
+
+    def "anyNotNull with null passed"() {
+        when:
+        def actual = Check.anyNotNull(null as String[])
+        then:
+        actual == false
+    }
+
+    def "anyNotNull as collection"() {
+        when:
+        def actual = Check.anyNotNull(values)
+        then:
+        actual == expected
+
+        where:
+        values                                      || expected
+        ["true"] as List<String>                    || true
+        ["false"] as List<String>                   || true
+        ["true", "true", "true"] as List<String>    || true
+        ["true", "false", "false"] as List<String>  || true
+        ["true", "false", "true"] as List<String>   || true
+        ["false", "true", "false"] as List<String>  || true
+        ["false", "false", "false"] as List<String> || true
+        [null] as List<String>                      || false
+        ["true", null, null] as List<String>        || true
+        ["false", null, null] as List<String>       || true
+        [] as List<String>                          || false
+        [null, null] as List<String>                || false
+        [null, "true"] as List<String>              || true
+        null as List<String>                        || false
     }
 }
