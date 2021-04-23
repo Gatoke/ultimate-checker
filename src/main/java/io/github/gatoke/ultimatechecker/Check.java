@@ -1,6 +1,7 @@
 package io.github.gatoke.ultimatechecker;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author Karol Dominiak <gatoke2@gmail.com>
@@ -429,5 +430,37 @@ public final class Check {
             }
         }
         return false;
+    }
+
+    /**
+     * Counts equal elements.
+     *
+     * @param compared - compared element
+     * @param elements - elements to compare with compared
+     * @return number of equal elements
+     */
+    public static <T> long numberOfEqualElements(final T compared, final Collection<T> elements) {
+        if (elements == null || elements.size() < 1) {
+            return 0;
+        }
+        if (elements instanceof Set) {
+            if (elements.contains(compared)) {
+                return 1;
+            }
+        }
+
+        long count = 0;
+        for (T value : elements) {
+            if (compared == null) {
+                if (value == null) {
+                    count++;
+                }
+                continue;
+            }
+            if (compared.equals(value)) {
+                count++;
+            }
+        }
+        return count;
     }
 }

@@ -506,4 +506,29 @@ class CheckTest extends Specification {
         [null, "true"] as List<String>              || true
         null as List<String>                        || false
     }
+
+    def "numberOfEqualElements"() {
+        when:
+        def actual = Check.numberOfEqualElements(compared, values)
+        then:
+        actual == expected
+
+        where:
+        compared | values                                     || expected
+        "true"   | ["true"] as List<String>                   || 1
+        "true"   | ["false"] as List<String>                  || 0
+        "true"   | ["true", "true", "true"] as List<String>   || 3
+        "true"   | ["true", "false", "false"] as List<String> || 1
+        1        | [1, 2, 2] as List<Integer>                 || 1
+        "true"   | [null] as List<String>                     || 0
+        "true"   | ["true", null, null] as List<String>       || 1
+        "true"   | ["false", null, null] as List<String>      || 0
+        "true"   | [] as List<String>                         || 0
+        "true"   | null as List<String>                       || 0
+        "Set"    | ["Set", "Set", "Map"] as Set<String>       || 1
+        null     | [null, null] as List<String>               || 2
+        null     | [null, "true"] as List<String>             || 1
+        null     | ["false", "false"] as List<String>         || 0
+        null     | null                                       || 0
+    }
 }
